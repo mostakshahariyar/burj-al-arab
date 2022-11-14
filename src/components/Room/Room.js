@@ -13,7 +13,7 @@ import { red } from '@material-ui/core/colors';
 import LocalHotelIcon from '@material-ui/icons/LocalHotel';
 import WcIcon from '@material-ui/icons/Wc';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,12 +38,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Room({room}){
+export default function Room({ room }) {
   const classes = useStyles();
-  const history = useHistory()
-    const handleBook = (bedType) => {
-        history.push(`/book/${bedType}`);
-    }
+  const history = useNavigate()
+  const handleBook = (bedType) => {
+    history.push(`/book/${bedType}`);
+  }
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -60,7 +60,7 @@ export default function Room({room}){
         image={room.imgUrl}
         title="Paella dish"
       />
-      <img src={`/images/${room.bedType}.png`} alt=""/>
+      <img src={`/images/${room.bedType}.png`} alt="" />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {room.description}
@@ -68,16 +68,16 @@ export default function Room({room}){
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <LocalHotelIcon />: {room.bed} 
+          <LocalHotelIcon />: {room.bed}
         </IconButton>
         <IconButton aria-label="share">
-          <WcIcon />: {room.capacity} 
+          <WcIcon />: {room.capacity}
         </IconButton>
         <IconButton aria-label="price">
-          <AttachMoneyIcon />: {room.price} 
+          <AttachMoneyIcon />: {room.price}
         </IconButton>
         <Button onClick={() => handleBook(room.bedType)} variant="contained" color="primary">
-            Book
+          Book
         </Button>
       </CardActions>
     </Card>
