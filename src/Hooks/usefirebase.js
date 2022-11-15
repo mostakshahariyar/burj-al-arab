@@ -76,11 +76,23 @@ const useFirebase = () => {
         };
 
         useEffect(() => {
+                // both are correc... when !user in this time clear the state
+                // const unsubscribed = onAuthStateChanged(auth, (user) => {
+                //         if (user) {
+                //                 setUser(user);
+                //         } else {
+                //                 setUser({})
+                //         }
+                //         //     setIsLoading(false);
+                // });
+                // return () => unsubscribed;
                 onAuthStateChanged(auth, user => {
                         if (user)
                                 setUser(user);
+                        else
+                                setUser({});
                 })
-        }, [user])
+        }, [auth])
 
 
         return { googleLogin, logOut, user, register, signinUser };
