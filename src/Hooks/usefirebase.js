@@ -1,9 +1,13 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
-import { useEffect } from "react";
-import { useState } from "react";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import firbaseAuthentication from "../Firebase/Firebase.init";
+
+
+firbaseAuthentication();
+
 const useFirebase = () => {
 
-        const [user, setUser] = useState[""];
+        const [user, setUser] = useState('');
         const googleProvider = new GoogleAuthProvider();
         const auth = getAuth();
 

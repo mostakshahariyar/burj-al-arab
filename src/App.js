@@ -10,18 +10,21 @@ import Login from './components/Login/Login';
 import Book from './components/Book/Book';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
+import Authcontex from './components/Contex/Authcontex';
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/book/:bedType" element={<Book />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <Authcontex>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/book/:bedType" element={<Book />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </Authcontex>
   );
 }
 

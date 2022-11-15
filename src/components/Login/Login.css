@@ -1,0 +1,15 @@
+.login-from {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        height: 80vh;
+}
+
+.login-from-children {
+
+        background-color: rgba(128, 128, 128, 0.374);
+        padding: 15px;
+        box-shadow: 10px 20px 10px 0 gray;
+        align-items: center;
+}
