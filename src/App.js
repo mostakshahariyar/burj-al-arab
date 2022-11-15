@@ -11,6 +11,7 @@ import Book from './components/Book/Book';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Authcontex from './components/Contex/Authcontex';
+import Register from './components/Register/Register';
 
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
       <Router>
         <Header />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/book/:bedType" element={<Book />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>

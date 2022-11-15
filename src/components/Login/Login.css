@@ -13,3 +13,11 @@
         box-shadow: 10px 20px 10px 0 gray;
         align-items: center;
 }
+
+.btn-regular {
+        background-color: goldenrod;
+        padding: .5rem;
+        border: none;
+        border-radius: 3px;
+        color: white;
+}

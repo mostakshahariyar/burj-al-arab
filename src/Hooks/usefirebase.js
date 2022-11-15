@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
 import firbaseAuthentication from "../Firebase/Firebase.init";
 
@@ -7,7 +7,7 @@ firbaseAuthentication();
 
 const useFirebase = () => {
 
-        const [user, setUser] = useState('');
+        const [user, setUser] = useState({});
         const googleProvider = new GoogleAuthProvider();
         const auth = getAuth();
 
@@ -29,6 +29,31 @@ const useFirebase = () => {
                                 // ...
                         });
         };
+
+        const register = (email, password, name) => {
+                createUserWithEmailAndPassword(auth, email, password)
+                        .then(userCredential => {
+                                const user = userCredential.user;
+                                console.log(user);
+                        })
+                        .catch((error) => {
+                                const errorCode = error.code;
+                                const errorMessage = error.message;
+                                // ..
+                        });
+                updateProfile(auth.currentUser, {
+                        displayName: `name`
+                }).then(() => {
+                        // Profile updated!
+                        // ...
+                }).catch((error) => {
+                        // An error occurred
+                        // ...
+                });
+        };
+
+        // const updateDisplayName = 
+
         const logOut = () => {
                 signOut(auth).then(() => {
                         // Sign-out successful.
@@ -37,15 +62,28 @@ const useFirebase = () => {
                 });
         };
 
+        const signinUser = (email, password) => {
+                signInWithEmailAndPassword(auth, email, password)
+                        .then((userCredential) => {
+                                // Signed in 
+                                const user = userCredential.user;
+                                // ...
+                        })
+                        .catch((error) => {
+                                const errorCode = error.code;
+                                const errorMessage = error.message;
+                        });
+        };
+
         useEffect(() => {
                 onAuthStateChanged(auth, user => {
                         if (user)
                                 setUser(user);
                 })
-        }, [])
+        }, [user])
 
 
-        return { googleLogin, logOut, user };
+        return { googleLogin, logOut, user, register, signinUser };
 
 
 }

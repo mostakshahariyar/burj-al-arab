@@ -2,19 +2,37 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import './Login.css'
+import { useState } from 'react';
 
 
 const Login = () => {
-    const { googleLogin, user } = useAuth();
+    const { user, signinUser, googleLogin } = useAuth();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const handelEmail = e => {
+        const emailValue = e.target.value;
+        setEmail(emailValue);
+    };
+    const handelPassword = e => {
+        const passwordValue = e.target.value;
+        setPassword(passwordValue);
+    };
+    const handelSubmit = e => {
+        e.preventDefault();
+        signinUser(email, password);
+        console.log(email, password);
+
+    }
     console.log(user);
     return (
         <div className='login-from'>
             <div className='login-from-children'>
                 <h2>Login</h2>
-                <form>
-                    <input type="email" />
+                <form onSubmit={handelSubmit}>
+                    <input type="email" onBlur={handelEmail} placeholder='Enter your email' required />
                     <br />
-                    <input type="password" name="" id="" />
+                    <input type="password" onBlur={handelPassword} placeholder='Password' name="" id="" required />
                     <br />
                     <br />
                     <button className='btn-regular'>Login</button>
