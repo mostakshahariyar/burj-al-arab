@@ -12,7 +12,7 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Authcontex from './components/Contex/Authcontex';
 import Register from './components/Register/Register';
-import Room from './components/Room/Room';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -24,8 +24,11 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/book/:bedType" element={<Book />} />
-          <Route path="/book/*" element={<Home />} />
+          {/* <Route path="/book/:bedType" element={<Book />} /> */}
+          {/* <Route path="/book/*" element={<Home />} /> */}
+          <Route path="/book/*" element={<PrivateRoute>
+            <Book />
+          </PrivateRoute>} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>

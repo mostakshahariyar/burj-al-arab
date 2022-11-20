@@ -1,8 +1,10 @@
 import React from 'react';
-import { redirect } from "react-router-dom"
+import { Navigate } from "react-router-dom"
+import useAuth from '../../Hooks/useAuth';
 
 const PrivateRoute = ({ children }) => {
-        return user.email ? { children } : redirect("/login");
+        const { user } = useAuth();
+        return user.email ? children : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
