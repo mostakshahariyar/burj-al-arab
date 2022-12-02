@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import './Login.css'
@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 
 const Login = () => {
+    const navigate = useNavigate();
     const { user, signinUser, googleLogin } = useAuth();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -22,6 +23,7 @@ const Login = () => {
         e.preventDefault();
         signinUser(email, password);
         console.log(email, password);
+        // navigate("/home");
 
     }
     console.log(user);

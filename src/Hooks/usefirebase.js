@@ -1,12 +1,13 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import firbaseAuthentication from "../Firebase/Firebase.init";
 
 
 firbaseAuthentication();
 
 const useFirebase = () => {
-
+        const navigate = useNavigate();
         const [user, setUser] = useState({});
         const googleProvider = new GoogleAuthProvider();
         const auth = getAuth();
@@ -17,6 +18,7 @@ const useFirebase = () => {
                                 const credential = GoogleAuthProvider.credentialFromResult(result);
                                 const token = credential.accessToken;
                                 const user = result.user;
+                                navigate("/home");
                         })
                         .catch((error) => {
                                 // Handle Errors here.
@@ -35,6 +37,7 @@ const useFirebase = () => {
                         .then(userCredential => {
                                 const user = userCredential.user;
                                 console.log(user);
+                                navigate("/home");
                         })
                         .catch((error) => {
                                 const errorCode = error.code;
@@ -67,6 +70,7 @@ const useFirebase = () => {
                         .then((userCredential) => {
                                 // Signed in 
                                 const user = userCredential.user;
+                                navigate("/home");
                                 // ...
                         })
                         .catch((error) => {

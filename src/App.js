@@ -16,8 +16,8 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
-    <Authcontex>
-      <Router>
+    <Router>
+      <Authcontex>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -31,8 +31,9 @@ function App() {
           </PrivateRoute>} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
-      </Router>
-    </Authcontex>
+      </Authcontex>
+    </Router>
+
   );
 }
 
